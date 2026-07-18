@@ -1,11 +1,11 @@
 # Dan's GT Omega Rig & PC Setup — Runbook
 
-*Last updated: PPL passed ✅ — CPL training underway*
+*Last updated: 2026-07-18 — PPL passed ✅ — CPL training underway*
 
 ---
 
 ## How to start a new AI session
-1. Run `.\context.ps1` on Gengar (in the repo folder)
+1. Run `context simrig` in PowerShell (or `.\context.ps1` from the repo folder)
 2. Paste the output to Claude
 3. State what you want to do
 
@@ -32,7 +32,7 @@ After any session where something was changed, decided, fixed, or purchased. Eve
 1. Write the file locally as `sessions/YYYY-MM-DD.md`
 2. From the repo folder:
 ```powershell
-cd "C:\Users\danan\Tools\Shadowlab & GIT\simrig-runbook"
+cd "C:\Users\danan\Tools\Shadowlab & GIT\Sim-Rig"
 git add sessions/YYYY-MM-DD.md
 git commit -m "Session log: YYYY-MM-DD"
 git push origin main
@@ -47,7 +47,7 @@ Update `RUNBOOK.md` itself when something changes that would affect how a future
 
 ### Save current state to GitHub
 ```powershell
-cd "C:\Users\danan\Tools\Shadowlab & GIT\simrig-runbook"
+cd "C:\Users\danan\Tools\Shadowlab & GIT\Sim-Rig"
 git add -A
 git commit -m "Update: describe what changed"
 git push origin main
@@ -75,14 +75,20 @@ git checkout abc1234     # replace with actual hash
 ## 🪑 RIG — GT OMEGA PRIME
 
 - **Frame:** GT Omega PRIME, 8040 aluminium extrusion. Built, sturdy, confirmed solid.
-- **Seat:** VW Golf GTI Mk6 OEM seat (tartan), fitted in place of the stock RS9 seat.
+- **Seat:** Still the original GT Omega RS9 seat — the VW Golf GTI Mk6 OEM seat swap discussed previously has **not** happened.
 - **T-nuts:** M8 40 Series drop-in/hammer-head, 8mm slot — the correct spec after a fair bit of trial and error. Keep a stock of these on hand for any future accessory additions.
 - **Joystick mounts:** 1x PRIME Side Support Bracket + 2x Flight Stick Expansion Plates (confirmed correct combination directly by GT Omega support).
-- **Monitor mount:** GT Omega PRIME **Quad** Integrated Monitor Mount.
-- **Outstanding GT Omega accessories** (held up at one point by a Cloudflare error on their site — site-side issue, not yours, worth rechecking stock/shipping):
-  - PRIME Gear Shifter Mount
-  - PRIME Keyboard Tray
-  - PRIME Monitor Quick Mount
+- **Monitor mount:** GT Omega PRIME **Quad** Integrated Monitor Mount — all 4 monitors now mounted and in use on this.
+- **Gear Shifter Mount & Keyboard Tray:** decided **not** to buy the official GT Omega versions — using **3D-printed equivalents** instead. Both still needed/in progress.
+- **New project — rig enclosure:** looking into adding more 8040 extrusion profiles to make the rig more enclosed (side/rear panelling), partly for aesthetics, partly to support the planned speaker upgrade below.
+
+---
+
+## 🔊 AUDIO — SURROUND SOUND (new)
+
+- Planning a proper surround sound upgrade for the rig — speakers mounted behind the seating position for genuine rear-channel immersion (engine/environment sounds from behind, radio chatter, etc.)
+- Ties into the rig enclosure project above — the extra extrusion framework will likely double as speaker mounting points
+- Not yet speced out (no specific speaker models/amp chosen yet) — worth researching options in a future session
 
 ---
 
@@ -97,30 +103,38 @@ git checkout abc1234     # replace with actual hash
 - Display engine caps out at **4 simultaneous active displays**, regardless of physical port count.
 - Setup: 3x MSI screens via a **DisplayPort 1-to-3 MST hub** (Thandble, on one native port) + 1x additional screen on a separate native port = 4 active, maxing the card.
 - The AOC desktop monitor competes for that same 4-display ceiling — **fix confirmed working:** simply power the AOC off via its own button (not unplug) to free a slot for the other screen.
-- **Stream Deck switching project (in progress):** using **MultiMonitorTool** (free, NirSoft) to save/load "Rig Mode" vs "Desktop Mode" display configs via command line, triggered from a Stream Deck button.
+- **Stream Deck switching project — basics working:** MultiMonitorTool (free, NirSoft) saves/loads "Rig Mode" vs "Desktop Mode" display configs via command line. Both config files (`RigMode.cfg`, `DesktopMode.cfg`) exist and load correctly. Not yet wired to an actual Stream Deck button — still to do.
   - Tool path: `C:\Users\danan\Tools\multimonitortool\MultiMonitorTool.exe`
-  - Config path: `C:\Users\danan\Tools\Display Config\RigMode.cfg` (DesktopMode.cfg to be saved the same way)
+  - Config path: `C:\Users\danan\Tools\Display Config\RigMode.cfg` / `DesktopMode.cfg`
   - Command: `"C:\Users\danan\Tools\multimonitortool\MultiMonitorTool.exe" /LoadConfig "C:\Users\danan\Tools\Display Config\RigMode.cfg"`
-  - **Last error hit:** "This app can't run on this PC" — likely a 32-bit/64-bit mismatch (re-download the 64-bit build from nirsoft.net) or the file needs unblocking (right-click exe → Properties → General tab → tick "Unblock").
-  - **Fallback if MultiMonitorTool keeps failing:** DisplayFusion (paid, ~£20) — more robust profile switching, better Stream Deck plugin support.
+  - **To revisit:** finish wiring this into a Stream Deck button once the extra Stream Decks arrive (see below)
+  - **DisplayFusion** (paid, ~£20) — flagged as a more robust alternative worth investigating properly; more reliable profile switching and better Stream Deck plugin support than MultiMonitorTool.
+
+---
+
+## 🎮 STREAM DECK
+
+- Currently own **1x standard Stream Deck**
+- **Planning to add:** Stream Deck **XL** + the model with **rotary knobs** (Stream Deck +) — for more dedicated buttons/controls across flight and racing sim functions
 
 ---
 
 ## 🎮 FLIGHT CONTROLS
 
-- **HOTAS:** Thrustmaster T.16000M FCS Flight Pack (stick + throttle + rudder pedals) — bought secondhand for £94.30. Chosen over the Thrustmaster Warthog (which was cancelled) because the T.16000M's Hall Effect stick sensors are more modern than the Warthog's ageing potentiometer-based throttle, at a fraction of the price.
+- **HOTAS:** Thrustmaster T.16000M FCS Flight Pack (stick + throttle + rudder pedals) — no change, still in use. Bought secondhand for £94.30. Chosen over the Thrustmaster Warthog (which was cancelled) because the T.16000M's Hall Effect stick sensors are more modern than the Warthog's ageing potentiometer-based throttle, at a fraction of the price.
 - **Deliberately deferred upgrade:** MOZA MTQ Throttle Quadrant (interchangeable Boeing/Airbus/fighter levers) — planned once flying style/preferences are clearer, not before.
-- **TrackIR 5** — confirmed want for head tracking in MSFS/DCS, on the list.
-- **Saitek panels** — still hunting eBay for a Radio Panel + Multi Panel, and there was a yoke/quadrant/radio/multi bundle spotted going cheap — worth keeping an eye out for similar bundles.
+- **TrackIR 5** — still on the list, not yet bought.
+- **Saitek Multi Panel — now owned.** Still hunting eBay for a Radio Panel and a yoke/quadrant bundle to complete the set.
 
 ---
 
 ## 🏎️ RACING / OTHER SIM CONTROLS
 
-- **MOZA RS20 All-in-One R5 Bundle** — 5.5Nm direct drive wheelbase + RS20 wheel + SR-P pedals + clamps.
-- **MOZA TSW Truck Wheel** — second wheel for Euro Truck Sim/Farm Sim, swaps via MOZA's quick-release in seconds.
-- **Sim rally interest noted** — WRC / EA Sports WRC / Dirt Rally 2.0 / Richard Burns Rally all good options. MOZA HBP Handbrake flagged as the natural future accessory for rally-specific driving technique.
-- **Buttkicker Gamer Plus** — confirmed want for tactile immersion (includes 4080 rail mount for the rig), not yet ordered.
+- **MOZA RS20 All-in-One R5 Bundle** — 5.5Nm direct drive wheelbase + RS20 wheel + SR-P pedals + clamps. No change.
+- **MOZA TSW Truck Wheel** — second wheel for Euro Truck Sim/Farm Sim, swaps via MOZA's quick-release in seconds. No change.
+- **Sim rally interest** — still just an interest, not yet actively playing WRC / Dirt Rally 2.0 / RBR. MOZA HBP Handbrake remains a flagged future accessory if/when this gets picked up.
+- **Racing setup overall** — undetermined for now, no immediate changes planned.
+- **Buttkicker Gamer Plus** — still on the list, not yet ordered.
 
 ---
 
@@ -136,24 +150,34 @@ git checkout abc1234     # replace with actual hash
 ## ✈️ FLIGHT SIMULATOR — MSFS 2024
 
 - **Version:** Microsoft Flight Simulator 2024, **Premium Deluxe Edition** (Xbox/Microsoft Store key via Eneba) — includes 95 aircraft total, notably the Boeing 787-10 Dreamliner, C-17 Globemaster, CH-47D Chinook, Saab 340B, Cessna Citation Longitude, and more on top of the standard roster.
-- **Career mode** — MSFS 2024 has a proper career progression built in. Start as a student pilot, earn licences, build hours, take on passenger and cargo jobs, unlock bigger aircraft. Good for structured progression before free flying.
+- **Career mode progress:** airliners are now **unlocked** in career mode.
+- **Current approach — deliberately sticking to smaller aircraft for now.** Airliner learning curve is a real concern; holding off on the 787/Saab 340B until more supporting tools are in place (see Air Manager note below).
+- **FlyByWire (A32NX)** — downloaded. Free, highly-regarded community Airbus A320 mod with deep systems modelling; a natural stepping stone toward the payware Fenix A320 without the up-front cost.
+
+### Air Manager / tablet-assisted cockpit (new, researching)
+- Interest in running **Air Manager** on a tablet (or multiple) mounted near the rig, to provide interactive virtual cockpit panels/checklists alongside the physical HOTAS — aimed at easing the airliner learning curve before committing further into career mode.
+- Currently just researching options — no tablet or Air Manager licence bought yet.
 
 ---
 
-## 🛫 AIRCRAFT PROGRESSION (recommended order)
+## 🛫 AIRCRAFT PROGRESSION (recommended order — for reference)
 
 1. **Cessna 172** — start here, every sim pilot does. Slow, forgiving, teaches the basics of joystick control and trimming properly.
 2. **Cessna 172 with G1000** — glass cockpit, introduces nav systems and autopilot basics.
 3. **Cirrus SR22** (included in Premium Deluxe) — faster GA, full Garmin Perspective avionics, proper AP. Good bridge between GA and airliners.
 4. **Saab 340B** (included in Premium Deluxe) — regional turboprop airliner, perfect for Fly UK shorter routes, real crew procedures.
 5. **Boeing 787-10 Dreamliner** (included in Premium Deluxe) — the long haul aircraft. The London to Sydney flight discussed extensively.
-6. **Fenix A320** (~£50, payware) — study-level Airbus, the gold standard for serious airliner flying and streaming. Fully modelled systems, proper FMS, failures.
-7. **PMDG 737** (~£70-90, payware) — same tier as Fenix but Boeing. Once you have one study-level aircraft, the other becomes a natural second step.
+6. **FlyByWire A32NX** (free) — now downloaded; a good free step into study-level Airbus systems before considering the payware Fenix.
+7. **Fenix A320** (~£50, payware) — study-level Airbus, the gold standard for serious airliner flying and streaming. Fully modelled systems, proper FMS, failures.
+8. **PMDG 737** (~£70-90, payware) — same tier as Fenix but Boeing. Once you have one study-level aircraft, the other becomes a natural second step.
+
+*Current position: airliners unlocked in career mode, but deliberately holding at smaller aircraft until Air Manager/tablet setup is sorted.*
 
 ---
 
 ## 🌐 VATSIM & ONLINE FLYING
 
+- **Status: not started yet.** VATSIM account and P1 rating still to do.
 - **What it is:** a global online network where real volunteers act as ATC and real people fly as pilots simultaneously. Every ATC voice you hear is a real human somewhere in the world. Controllers can't control your aircraft — they can only talk to you, just like real ATC. You follow instructions, they see you as a blip on their radar.
 - **Required software:** vPilot (free, connects MSFS to the VATSIM network) + a free VATSIM account at vatsim.net.
 - **Before flying online:** complete the **VATSIM P1 pilot rating** (free online training) — teaches phraseology, readback procedures, and what to expect before you talk to a real controller for the first time.
@@ -164,24 +188,26 @@ git checkout abc1234     # replace with actual hash
 
 ---
 
-## 🗺️ NAVIGATION & PLANNING SOFTWARE (all free unless noted)
+## 🗺️ NAVIGATION & PLANNING SOFTWARE
 
-| Tool | Purpose |
-|---|---|
-| **SimBrief** | Real world flight planning — routes, fuel load, OFP paperwork, integrates with Fenix/PMDG FMS |
-| **Little Navmap** | Moving map, charts, flight planning, VATSIM traffic overlay — run on 4th screen |
-| **Navigraph** (~£15/month) | Real world charts, SIDs, STARs, approaches updated every 28 days — essential for serious IFR flying |
-| **VATSpy** | Live VATSIM radar — every aircraft and controller online in real time |
-| **vPilot** | Connects MSFS to VATSIM network |
+| Tool | Purpose | Status |
+|---|---|---|
+| **SimBrief** | Real world flight planning — routes, fuel load, OFP paperwork, integrates with Fenix/PMDG FMS | Not yet in use |
+| **Little Navmap** | Moving map, charts, flight planning, VATSIM traffic overlay — run on 4th screen | **Installed** |
+| **Navigraph** (~£15/month) | Real world charts, SIDs, STARs, approaches updated every 28 days — essential for serious IFR flying | **Subscribed** |
+| **VATSpy** | Live VATSIM radar — every aircraft and controller online in real time | Not yet in use (VATSIM not started) |
+| **vPilot** | Connects MSFS to VATSIM network | Not yet in use (VATSIM not started) |
 
 ---
 
-## 🎮 REALISM ADD-ONS (paid, priority order)
+## 🎮 REALISM ADD-ONS
 
-**1. GSX Pro** (~£30-35, FSDreamTeam)
+**Status: none purchased yet, but planning to get GSX Pro and OnAir Company soon.**
+
+**1. GSX Pro** (~£30-35, FSDreamTeam) — planned next purchase
 Ground Services X — adds realistic ground handling to every flight. Jetways, stairs, catering trucks, fuel bowsers, pushback tug, passenger boarding/deboarding animations. Transforms the gate experience completely. Essential for streaming — the departure sequence alone is compelling content.
 
-**2. OnAir Company** (~£8-10/month or one-time purchase)
+**2. OnAir Company** (~£8-10/month or one-time purchase) — planned next purchase
 Virtual airline management platform running alongside MSFS in real time. You build an airline from scratch — start small, buy/lease aircraft, open routes, hire virtual pilots, manage finances. Flights take real time (time acceleration supported for cruise phase — see below). Random failures and emergencies can occur mid-flight. Gives every flight a purpose and creates a persistent narrative perfect for a YouTube series.
 
 **Time acceleration in OnAir:** fully supported. Typical long haul workflow:
@@ -190,24 +216,24 @@ Virtual airline management platform running alongside MSFS in real time. You bui
 - Real time — descent, approach, landing, taxi in (the interesting bit again)
 - A 12-hour London-Sydney flight becomes roughly 2-3 hours at the keyboard
 
-**3. Active Sky** (~£40, HiFi Simulation Technologies)
+**3. Active Sky** (~£40, HiFi Simulation Technologies) — not yet bought
 Replaces MSFS's default weather engine with more realistic atmospheric modelling — proper turbulence, wind shear, icing conditions, SIGMETs and PIREPs in-sim. Weather surprises mid-flight are great stream content and genuinely useful for building weather awareness.
 
-**4. Orbx GB Central** (~£25, orbxdirect.com)
+**4. Orbx GB Central** (~£25, orbxdirect.com) — not yet bought
 Hyper-detailed UK Midlands scenery — Stoke-on-Trent area specifically. Accurate autogen, farmhouses, hedgerows, landmarks. Flying over familiar territory looking like it actually should is genuinely impressive.
 
-**5. FlyingIron Sims Spitfire Mk IXc** (~£15, MSFS Marketplace)
+**5. FlyingIron Sims Spitfire Mk IXc** (~£15, MSFS Marketplace) — not yet bought
 Because flying a Spitfire over the Peak District with the Buttkicker rumbling the Merlin engine through your seat is a bucket list sim moment.
 
 ---
 
-## 🎬 STREAMING SETUP (YouTube recommended over Twitch for this content)
+## 🎬 STREAMING SETUP
 
-**Why YouTube:** chill/ambient sim content compounds over time — old streams stay permanently searchable and get discovered months later. Twitch VODs disappear. For a London-Sydney OnAir flight as a 3-hour stream, YouTube is the right home.
+**Status: not started.** OBS Studio is installed but streaming itself hasn't begun yet.
 
-**OBS Studio** (free) — standard streaming software, handles both YouTube and Twitch simultaneously if you want both.
+**Why YouTube (recommended over Twitch for this content):** chill/ambient sim content compounds over time — old streams stay permanently searchable and get discovered months later. Twitch VODs disappear. For a London-Sydney OnAir flight as a 3-hour stream, YouTube is the right home.
 
-**Suggested stream structure (long haul OnAir + VATSIM):**
+**Suggested stream structure (long haul OnAir + VATSIM), for whenever this kicks off:**
 1. Pre-flight — SimBrief planning, load aircraft, walk through departure plate
 2. GSX pushback sequence and startup — visually compelling, great opening
 3. Taxi and departure on VATSIM — real ATC interaction
@@ -219,6 +245,8 @@ Because flying a Spitfire over the Peak District with the Buttkicker rumbling th
 **Music:** use **Pretzel Rocks** (~£8/month) — licensed specifically for streaming, safe for YouTube VODs without mutes or copyright strikes. Never stream Spotify, Apple Music, or commercial radio.
 
 **Copyright on games:** all the sims discussed (MSFS, Euro Truck, Farming Simulator, Assetto Corsa, F1) permit streaming and monetisation. Check each game's specific policy before enabling ads.
+
+**Realistic sequencing:** given VATSIM, GSX, and OnAir are all still pending, streaming is naturally blocked on those first — worth treating as the last piece to switch on once the flying/add-on setup feels ready to show off.
 
 ---
 
@@ -248,19 +276,24 @@ For when something goes wrong mid-flight and you need a quick reminder:
 
 ## ✈️ REAL-WORLD AVIATION TRACKING (side project)
 
-- **ADS-B receiver** — RTL-SDR Blog V4 dongle (~£35) + 1090MHz antenna (~£25), running as a Home Assistant Community Add-on (readsb/dump1090) on the existing Pi 5/HAOS install. Tracks real aircraft overhead on a live local map. A natural complement to sim flying — compare real traffic patterns against what you fly in the sim.
+- **ADS-B receiver** — RTL-SDR Blog V4 dongle (~£35) + 1090MHz antenna (~£25), planned to run as a Home Assistant Community Add-on (readsb/dump1090) on the existing Pi 5/HAOS install. **Not yet bought.** Tracks real aircraft overhead on a live local map. A natural complement to sim flying — compare real traffic patterns against what you fly in the sim.
 
 ---
 
 ## 📋 NEXT ACTIONS
 
-1. Fix MultiMonitorTool ("app can't run" error) → confirm Rig Mode/Desktop Mode switching → wire into Stream Deck buttons.
-2. Order outstanding GT Omega accessories (Gear Shifter Mount, Keyboard Tray, Monitor Quick Mount).
-3. Order TrackIR 5 and Buttkicker Gamer Plus.
-4. Keep watching eBay for Saitek panels/bundles (Radio Panel, Multi Panel, yoke bundle).
-5. Set up VATSIM account + vPilot → complete P1 pilot rating before flying online.
-6. Buy GSX Pro and OnAir Company when ready to start airliner/streaming content.
-7. ADS-B add-on — low priority, fun project for a free afternoon.
+1. Design/print 3D versions of the Gear Shifter Mount and Keyboard Tray.
+2. Finish wiring MultiMonitorTool Rig/Desktop mode switching to a Stream Deck button — also properly evaluate DisplayFusion as an alternative.
+3. Buy Stream Deck XL and Stream Deck + (rotary knobs).
+4. Order TrackIR 5 and Buttkicker Gamer Plus.
+5. Keep watching eBay for a Saitek Radio Panel and yoke/quadrant bundle (Multi Panel already owned).
+6. Research and spec out the surround sound speaker upgrade (models, amp, mounting via the new extrusion enclosure).
+7. Progress the rig enclosure project (extra 8040 extrusion, side/rear panelling).
+8. Research and decide on Air Manager + tablet setup before progressing further into airliner career mode.
+9. Buy GSX Pro and OnAir Company.
+10. Set up VATSIM account + vPilot → complete P1 pilot rating before flying online.
+11. ADS-B add-on — low priority, fun project for a free afternoon.
+12. Streaming — realistically the last step once VATSIM/GSX/OnAir are in place.
 
 ---
 
@@ -270,7 +303,7 @@ For when something goes wrong mid-flight and you need a quick reminder:
 - Deliver instructions in logical numbered steps
 - No walls of text
 - When editing files: request current content, make edits, provide complete file to copy-paste
-- Use the `context.ps1` script output at the start of each session for current state
+- Use the `context simrig` output at the start of each session for current state
 
 ---
 
