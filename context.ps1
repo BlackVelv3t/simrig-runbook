@@ -51,8 +51,8 @@ $installed | Where-Object {
 Write-Host "`n--- Stream Deck ---" -ForegroundColor Yellow
 Get-Process -Name "StreamDeck" -ErrorAction SilentlyContinue | Select-Object Name, Id, StartTime
 
-Write-Host "`n--- Git Status (simrig-runbook repo) ---" -ForegroundColor Yellow
-$repoPath = "C:\Users\danan\Tools\Shadowlab & GIT\simrig-runbook"
+Write-Host "`n--- Git Status (Sim-Rig repo) ---" -ForegroundColor Yellow
+$repoPath = "C:\Users\danan\Tools\Shadowlab\Sim-Rig"
 if (Test-Path $repoPath) {
     Push-Location $repoPath
     git status

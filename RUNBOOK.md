@@ -32,7 +32,7 @@ After any session where something was changed, decided, fixed, or purchased. Eve
 1. Write the file locally as `sessions/YYYY-MM-DD.md`
 2. From the repo folder:
 ```powershell
-cd "C:\Users\danan\Tools\Shadowlab & GIT\Sim-Rig"
+cd "C:\Users\danan\Tools\Shadowlab\Sim-Rig"
 git add sessions/YYYY-MM-DD.md
 git commit -m "Session log: YYYY-MM-DD"
 git push origin main
@@ -47,7 +47,7 @@ Update `RUNBOOK.md` itself when something changes that would affect how a future
 
 ### Save current state to GitHub
 ```powershell
-cd "C:\Users\danan\Tools\Shadowlab & GIT\Sim-Rig"
+cd "C:\Users\danan\Tools\Shadowlab\Sim-Rig"
 git add -A
 git commit -m "Update: describe what changed"
 git push origin main
